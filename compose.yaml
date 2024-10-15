@@ -1,20 +1,20 @@
 version: '3'
 networks:
-   profile-network:
-       external: true
-       name: 'mongo-network'
+  profile-network:
+    external: true
+    name: 'mongo-network'
 services:
   app:
     container_name: profileapp
     image: profileapp:1.0
-    build: .      # Location of Dockerfile
+    build: . # Location of Dockerfile
     ports:
       - 3000:3000
     environment:
       - MONGO_PASS=secret
-      - MONGO_HOST=mongodb 
+      - MONGO_HOST=mongodb
     networks:
-       - profile-network
+      - profile-network
     depends_on:
       - mongodb
 
@@ -25,7 +25,9 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=admin
       - MONGO_INITDB_ROOT_PASSWORD=secret
     networks:
-         - profile-network
+      - profile-network
+    volumes:
+      - D:\Agile\User Profile Web App/data:/db/data
 
   mongo-express:
     container_name: express
@@ -38,6 +40,6 @@ services:
       - ME_CONFIG_MONGODB_ADMINPASSWORD=secret
       - ME_CONFIG_MONGODB_SERVER=mongodb
     networks:
-       - profile-network
+      - profile-network
     depends_on:
       - mongodb
