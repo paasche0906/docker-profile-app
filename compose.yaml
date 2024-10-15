@@ -25,7 +25,9 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=admin
       - MONGO_INITDB_ROOT_PASSWORD=secret
     networks:
-       - profile-network
+         - profile-network
+    volumes:   
+          - D:\Agile\User Profile Web App/data:/db/data  
 
   mongo-express:
     container_name: express
